@@ -20,7 +20,7 @@ public class User implements Serializable {
 		this.id = id;
 		this.name = name;
 	}
-	
+
 	public void addToGroup(Group group) {
 		List<Group> updatedGroupsList = Arrays.asList(this.groups);
 		updatedGroupsList.add(group);

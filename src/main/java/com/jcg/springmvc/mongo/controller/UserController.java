@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jcg.springmvc.mongo.models.User;
-import com.jcg.springmvc.mongo.UserService;
+import com.jcg.springmvc.mongo.services.UserService;
 
 @Controller
 @RequestMapping("/user")
