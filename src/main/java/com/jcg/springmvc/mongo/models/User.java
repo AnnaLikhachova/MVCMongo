@@ -1,12 +1,15 @@
 package com.jcg.springmvc.mongo.models;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private String id, name;
+	private Group[] groups = new Group[0];
 
 	public User() {
 		super();
@@ -16,6 +19,12 @@ public class User implements Serializable {
 		super();
 		this.id = id;
 		this.name = name;
+	}
+	
+	public void addToGroup(Group group) {
+		List<Group> updatedGroupsList = Arrays.asList(this.groups);
+		updatedGroupsList.add(group);
+		this.groups = updatedGroupsList.toArray(new Group[0]);
 	}
 
 	public String getId() {
