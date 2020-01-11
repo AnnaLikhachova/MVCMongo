@@ -1,6 +1,7 @@
 package com.jcg.springmvc.mongo.controller;
 
 import com.jcg.springmvc.mongo.models.Group;
+import com.jcg.springmvc.mongo.models.User;
 import com.jcg.springmvc.mongo.services.GroupService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,4 +65,12 @@ public class GroupController {
         }
         return "redirect:list";
     }
+
+    @RequestMapping(value = "/join", method = RequestMethod.GET)
+    public String join(@RequestParam(value="id", required=true) String id, Model model) {
+        groupService.join(id);
+        return "redirect:list";
+    }
+
+
 }

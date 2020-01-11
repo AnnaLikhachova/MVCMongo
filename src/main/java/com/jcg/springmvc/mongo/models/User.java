@@ -1,6 +1,7 @@
 package com.jcg.springmvc.mongo.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,14 +16,32 @@ public class User implements Serializable {
 		super();
 	}
 
+	public User(String id, String name, Group[] groups) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.groups = groups;
+	}
+
 	public User(String id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
 
+	public Group[] getGroups() {
+		return groups;
+	}
+
+	public void setGroups(Group[] groups) {
+		this.groups = groups;
+	}
+
 	public void addToGroup(Group group) {
-		List<Group> updatedGroupsList = Arrays.asList(this.groups);
+		List<Group> updatedGroupsList = new ArrayList<>();
+		if(this.groups != null) {
+			updatedGroupsList = new ArrayList<>(Arrays.asList(this.groups));
+		}
 		updatedGroupsList.add(group);
 		this.groups = updatedGroupsList.toArray(new Group[0]);
 	}

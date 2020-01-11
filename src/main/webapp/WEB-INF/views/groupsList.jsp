@@ -35,6 +35,9 @@
 	                    	<td>
 	                        	<c:url var="deleteUrl" value="/group/delete?id=${group.id}" /><a id="delete" href="${deleteUrl}" class="btn btn-danger">Delete</a>
 	                    	</td>
+	                    	<td>
+	                        	<c:url var="joinUrl" value="/group/join?id=${group.id}" /><a id="join" href="${joinUrl}" class="btn btn-info">Join Group</a>
+	                    	</td>
 	                	</tr>
 	            	</c:forEach>
 	        	</tbody>
