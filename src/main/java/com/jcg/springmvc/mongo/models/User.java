@@ -1,4 +1,4 @@
-package com.jcg.springmvc.mongo;
+package com.jcg.springmvc.mongo.models;
 
 import java.io.Serializable;
 
