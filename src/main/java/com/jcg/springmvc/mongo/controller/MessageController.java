@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Random;
 
@@ -28,7 +29,9 @@ public class MessageController {
 	}
 	
 	@RequestMapping(value = { "/createMessage" }, method = RequestMethod.POST)
-	public String saveMessage(ModelMap model, @ModelAttribute("messageAttr")  Message message) {
+	public String saveMessage(ModelMap model,
+                              @ModelAttribute("messageAttr")  Message message,
+                              HttpServletRequest request) {
 		if(message.getId() != null && !message.getId().trim().equals("")) {
 			messageService.edit(message);
 		} else {
@@ -36,7 +39,8 @@ public class MessageController {
             message.setId(String.valueOf(ran.nextInt(100)));
 			messageService.add(message);
 		}
-		return "redirect:/chat";
+        String referer = request.getHeader("Referer");
+        return "redirect:"+ referer;
 	}
 
     // Displaying the initial messages list.

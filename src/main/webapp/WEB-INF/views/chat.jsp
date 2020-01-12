@@ -16,7 +16,7 @@
 	<table id="users_table" class="table">
 		<thead>
 		<tr align="center">
-			<th>Id</th><th>Message</th><th colspan="3"></th>
+			<th>Message</th><th colspan="3"></th>
 		</tr>
 		</thead>
 		<tbody>
