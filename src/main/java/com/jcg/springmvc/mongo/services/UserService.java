@@ -1,9 +1,10 @@
-package com.jcg.springmvc.mongo;
+package com.jcg.springmvc.mongo.services;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.jcg.springmvc.mongo.models.User;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +19,7 @@ import com.mongodb.DBObject;
 @Transactional
 public class UserService {
 
-	static String db_name = "mydb", db_collection = "mycollection";
+	static String db_name = "mydb", db_collection = "users";
 	private static Logger log = Logger.getLogger(UserService.class);
 
 	// Fetch all users from the mongo database.

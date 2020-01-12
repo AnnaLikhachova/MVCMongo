@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 
-import com.jcg.springmvc.mongo.User;
-import com.jcg.springmvc.mongo.UserService;
+import com.jcg.springmvc.mongo.models.User;
+import com.jcg.springmvc.mongo.services.UserService;
 
 @Controller
 //@RequestMapping("/user")
@@ -31,16 +31,16 @@ public class UserController {
 
 	@Resource(name="userService")
 	private UserService userService;
-	
+
 	@RequestMapping(value = { "/form" }, method = RequestMethod.GET)
-	public String showForm(ModelMap model) {		
+	public String showForm(ModelMap model) {
 		User user = new User();
 		model.addAttribute("userAttr", user);
 		return "form";
 	}
-	
+
 	@RequestMapping(value = { "/form" }, method = RequestMethod.POST)
-	public String saveUser(ModelMap model, @ModelAttribute("userAttr") User user) {		
+	public String saveUser(ModelMap model, @ModelAttribute("userAttr") User user) {
 		if(user.getId() != null && !user.getId().trim().equals("")) {
 			userService.edit(user);
 		} else {
@@ -48,17 +48,17 @@ public class UserController {
 		}
 		return "form";
 	}
-	
+
 	@RequestMapping(value = { "/welcome" }, method = RequestMethod.GET)
-	public String showUserList(ModelMap model) {		
+	public String showUserList(ModelMap model) {
 		User user = new User();
 		model.addAttribute("userAttr", user);
 		log.debug("Request to fetch all users from the mongo database");
-		List<User> userList = userService.getAll();		
+		List<User> userList = userService.getAll();
 		model.addAttribute("users", userList);
 		return "welcome";
 	}
-     
+
     /**
      * This method will be called on form submission, handling POST request for
      * updating user in database. It also validates the user input
@@ -71,15 +71,15 @@ public class UserController {
         model.addAttribute("edit", true);
         return "form";
     }
-    
+
 	 /**
      * This method will be called on form submission, handling POST request for
      * updating user in database. It also validates the user input
      */
     @RequestMapping(value = { "/edit-user-{id}" }, method = RequestMethod.POST)
-    public String updateUser(User user, 
+    public String updateUser(User user,
             ModelMap model, @PathVariable String id) {
- 
+
     	if(user.getId() != null && !user.getId().trim().equals("")) {
 			userService.edit(user);
 		} else {
@@ -87,15 +87,15 @@ public class UserController {
 		}
         return "welcome";
     }
-    
+
     /**
      * This method will delete an user by it's ID value.
      */
     @RequestMapping(value = { "/delete-user-{id}" }, method = RequestMethod.GET)
     public String deleteUser(@PathVariable String id, ModelMap model) {
-    
+
    	userService.delete(id);
         return "redirect:/welcome";
     }
-	
+
 }
