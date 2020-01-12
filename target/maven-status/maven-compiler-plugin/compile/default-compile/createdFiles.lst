@@ -1,0 +1,6 @@
+com/jcg/springmvc/mongo/UserService.class
+com/jcg/springmvc/mongo/controller/UserController.class
+com/jcg/springmvc/mongo/User.class
+com/jcg/springmvc/mongo/configuration/AppConfig.class
+com/jcg/springmvc/mongo/factory/MongoFactory.class
+com/jcg/springmvc/mongo/configuration/AppInitializer.class

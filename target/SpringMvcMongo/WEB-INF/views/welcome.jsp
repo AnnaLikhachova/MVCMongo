@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -14,7 +16,7 @@
 	    	
 	    	<!-- Div to add a new user to the mongo database -->
 	    	<div id="add_new_user">
-	    			<c:url var="addUrl" value="/user/add" /><a id="add" href="${addUrl}" class="btn btn-success">Add user</a>
+	    			<a href="form" class="btn-main-title">Add user</a>
 	    	</div>
 	    	<div>&nbsp;</div>
 			
@@ -31,10 +33,10 @@
 	                    	<td><c:out value="${user.id}" /></td>
 	                    	<td><c:out value="${user.name}" /></td>
 	                    	<td>
-	                        	<c:url var="editUrl" value="/user/edit?id=${user.id}" /><a id="update" href="${editUrl}" class="btn btn-warning">Update</a>
+	                        	<c:url var="editUrl" value="/edit-user-${user.id}" /><a id="update" href="${editUrl}" class="btn btn-warning">Update</a>
 	                    	</td>
 	                    	<td>
-	                        	<c:url var="deleteUrl" value="/user/delete?id=${user.id}" /><a id="delete" href="${deleteUrl}" class="btn btn-danger">Delete</a>
+	                        	<c:url var="deleteUrl" value="/delete-user-${user.id}" /><a id="delete" href="${deleteUrl}" class="btn btn-danger">Delete</a>
 	                    	</td>
 	                	</tr>
 	            	</c:forEach>
