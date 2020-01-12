@@ -159,7 +159,10 @@ public class UserService {
 		DBObject where_query = new BasicDBObject();
 		where_query.put("email", email);
 
-		DBObject dbo = coll.findOne(where_query);		
+		DBObject dbo = coll.findOne(where_query);
+		if(dbo == null) {
+			return null;
+		}
 		u.setId(dbo.get("id").toString());
 		u.setName(dbo.get("name").toString());
 		u.setEmail(dbo.get("email").toString());

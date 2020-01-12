@@ -88,11 +88,7 @@ public class GroupController {
    	groupService.delete(id);
         return "redirect:/groupList";
     }
-    
-    
-    
-    
-    
+
     // Opening the add new group form page.
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addGroup(Model model) {
