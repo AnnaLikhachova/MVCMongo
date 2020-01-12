@@ -1,34 +1,22 @@
-package com.jcg.springmvc.mongo.models;
+package com.jcg.springmvc.mongo;
 
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.List;
 
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String id, name, email, password;
-	private Group[] groups = new Group[0];
+	private String id, name, email;
 
 	public User() {
 		super();
 	}
 
-	public User(String id, String name) {
+	public User(String id, String name, String email) {
 		super();
 		this.id = id;
 		this.name = name;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void addToGroup(Group group) {
-		List<Group> updatedGroupsList = Arrays.asList(this.groups);
-		updatedGroupsList.add(group);
-		this.groups = updatedGroupsList.toArray(new Group[0]);
+		this.email = email;
 	}
 
 	public String getId() {
