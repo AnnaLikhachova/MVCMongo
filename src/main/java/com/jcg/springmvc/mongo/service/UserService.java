@@ -148,4 +148,23 @@ public class UserService {
 		// Return user object.
 		return u;
 	}
+	
+
+	public User findUserByEmail(String email) {
+		
+		User u = new User();
+		DBCollection coll = MongoFactory.getCollection(db_name, db_collection);
+
+		// Fetching the record object from the mongo database.
+		DBObject where_query = new BasicDBObject();
+		where_query.put("email", email);
+
+		DBObject dbo = coll.findOne(where_query);		
+		u.setId(dbo.get("id").toString());
+		u.setName(dbo.get("name").toString());
+		u.setEmail(dbo.get("email").toString());
+		u.setPassword(dbo.get("password").toString());
+		// Return user object.
+		return u;
+	}
 }
