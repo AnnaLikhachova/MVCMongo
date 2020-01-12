@@ -15,6 +15,10 @@ public class User implements Serializable {
 		super();
 	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public User(String id, String name) {
 		super();
 		this.id = id;
