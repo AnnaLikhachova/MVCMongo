@@ -30,6 +30,14 @@ public class UserController {
 	@Resource(name="userService")
 	private UserService userService;
 	
+	/**
+     * This method returns profile page.
+     */
+	@RequestMapping(value = { "/profile" }, method = RequestMethod.GET)
+	public String profile(ModelMap model) {
+		return "/profile";
+	}
+	
 	@RequestMapping(value = { "/addUser" }, method = RequestMethod.GET)
 	public String showForm(ModelMap model) {		
 		User user = new User();
@@ -44,7 +52,7 @@ public class UserController {
 		} else {
 			userService.add(user);
 		}
-		return "addUser";
+		return "redirect:/admin";
 	}
 	
 	@RequestMapping(value = { "/admin" }, method = RequestMethod.GET)

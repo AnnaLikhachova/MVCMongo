@@ -47,7 +47,7 @@ public class LoginController {
 			model.addAttribute("loggedUser", user);
 			model.addAttribute("email", user.getEmail());
 			model.addAttribute("password", user.getPassword());
-			return "redirect:/welcome";
+			return "profile";
 		}		
 	}
 }

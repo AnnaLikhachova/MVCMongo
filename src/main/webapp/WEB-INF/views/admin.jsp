@@ -24,7 +24,7 @@
 	    	<table id="users_table" class="table">
 	        	<thead>
 	            	<tr align="center">
-	            		<th>Id</th><th>Name</th><th colspan="2"></th>
+	            		<th>Id</th><th>Name</th><th>Email</th><th colspan="3"></th>
 	            	</tr>
 	        	</thead>
 	        	<tbody>
@@ -32,6 +32,7 @@
 	                	<tr align="center">
 	                    	<td><c:out value="${user.id}" /></td>
 	                    	<td><c:out value="${user.name}" /></td>
+	                    	<td><c:out value="${user.email}" /></td>
 	                    	<td>
 	                        	<c:url var="editUrl" value="/edit-user-${user.id}" /><a id="update" href="${editUrl}" class="btn btn-warning">Update</a>
 	                    	</td>
@@ -42,6 +43,7 @@
 	            	</c:forEach>
 	        	</tbody>
 	    	</table>
+	    	<a href="login" class="btn-main-title">Go to login page</a>
 		</div>	    
 	</body>
 </html>

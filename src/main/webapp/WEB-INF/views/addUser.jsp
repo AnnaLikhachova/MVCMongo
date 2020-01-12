@@ -19,6 +19,10 @@
 	        	<form:hidden path="id" />
 	            <label for="user_name">Enter Name: </label>
 	            <form:input id="user_name" cssClass="form-control" path="name" />
+	             <label for="user_name">Enter Email: </label>
+	            <form:input id="user_name" cssClass="form-control" path="email" />
+	             <label for="user_name">Enter Password: </label>
+	            <form:input id="user_name" cssClass="form-control" path="password" />
 	            <div>&nbsp;</div>
 
 	            <button id="saveBtn" type="submit" class="btn btn-primary">Save</button>

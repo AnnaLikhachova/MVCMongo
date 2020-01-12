@@ -2,7 +2,6 @@ package com.jcg.springmvc.mongo.controller;
 
 import org.springframework.stereotype.Controller;
 import com.jcg.springmvc.mongo.model.Group;
-import com.jcg.springmvc.mongo.model.User;
 import com.jcg.springmvc.mongo.service.GroupService;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.annotation.Resource;
 import java.util.List;
 import org.apache.log4j.Logger;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class GroupController {
@@ -86,44 +84,7 @@ public class GroupController {
     public String deleteUser(@PathVariable String id, ModelMap model) {
     
    	groupService.delete(id);
-        return "redirect:/groupList";
+        return "redirect:/groupsList";
     }
     
-    
-    
-    
-    
-    // Opening the add new group form page.
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String addGroup(Model model) {
-        log.debug("Request to open the new group form page");
-        model.addAttribute("groupAttr", new Group());
-        return "createGroup";
-    }
-
-    // Opening the edit group form page.
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String editGroup(@RequestParam(value="id", required=true) String id, Model model) {
-        log.debug("Request to open the edit group form page");
-        model.addAttribute("groupAttr", groupService.findGroupId(id));
-        return "createGroup";
-    }
-
-    // Deleting the specified group.
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String delete(@RequestParam(value="id", required=true) String id, Model model) {
-        groupService.delete(id);
-        return "redirect:list";
-    }
-
-    // Adding a new group or updating an existing group.
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(@ModelAttribute("groupAttr") Group group) {
-        if(group.getId() != null && !group.getId().trim().equals("")) {
-            groupService.edit(group);
-        } else {
-            groupService.add(group);
-        }
-        return "redirect:list";
-    }
 }
