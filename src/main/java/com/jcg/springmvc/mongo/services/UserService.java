@@ -55,6 +55,7 @@ public class UserService {
 			BasicDBObject doc = new BasicDBObject();
 			doc.put("id", String.valueOf(ran.nextInt(100))); 
 			doc.put("name", user.getName());			
+			doc.put("email", user.getEmail());
 
 			// Save a new user to the mongo collection.
 			coll.insert(doc);
@@ -135,6 +136,23 @@ public class UserService {
 		DBObject dbo = coll.findOne(where_query);		
 		u.setId(dbo.get("id").toString());
 		u.setName(dbo.get("name").toString());
+
+		// Return user object.
+		return u;
+	}
+
+	public User findBySso(String sso) {
+		User u = new User();
+		DBCollection coll = MongoFactory.getCollection(db_name, db_collection);
+
+		// Fetching the record object from the mongo database.
+		DBObject where_query = new BasicDBObject();
+		where_query.put("email", sso);
+
+		DBObject dbo = coll.findOne(where_query);
+		u.setId(dbo.get("id").toString());
+		u.setName(dbo.get("name").toString());
+		u.setEmail(dbo.get("email").toString());
 
 		// Return user object.
 		return u;
