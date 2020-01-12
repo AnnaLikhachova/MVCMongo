@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.jcg.springmvc.mongo.User;
-import com.jcg.springmvc.mongo.UserService;
+import com.jcg.springmvc.mongo.model.User;
+import com.jcg.springmvc.mongo.service.UserService;
 
 /**
  * The controller class for registration page.
@@ -57,7 +57,7 @@ public class RegistrationController {
 		session.setAttribute("loggedUser", user);
         userService.add(user);
         model.addAttribute("user", user);
-		return  "welcome";
+		return  "redirect:/welcome";
 	}
 	
 }

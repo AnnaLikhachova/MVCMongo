@@ -1,7 +1,5 @@
 package com.jcg.springmvc.mongo.configuration;
 
-import javax.annotation.PostConstruct;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,13 +62,6 @@ private static final Logger log = LoggerFactory.getLogger(AppConfig.class);
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasename("message");
         return messageSource;
-    }
-    
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index");
-        registry.addViewController("/form").setViewName("form");
-        registry.addViewController("/welcome").setViewName("welcome");
     }
     
     	

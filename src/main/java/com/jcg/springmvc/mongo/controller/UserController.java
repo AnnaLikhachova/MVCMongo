@@ -19,12 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
-
-import com.jcg.springmvc.mongo.User;
-import com.jcg.springmvc.mongo.UserService;
+import com.jcg.springmvc.mongo.model.User;
+import com.jcg.springmvc.mongo.service.UserService;
 
 @Controller
-//@RequestMapping("/user")
 public class UserController {
 
 	private static Logger log = Logger.getLogger(UserController.class);
