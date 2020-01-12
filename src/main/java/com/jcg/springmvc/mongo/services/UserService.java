@@ -150,9 +150,13 @@ public class UserService {
 		where_query.put("email", sso);
 
 		DBObject dbo = coll.findOne(where_query);
+		if(dbo == null) {
+			return null;
+		}
 		u.setId(dbo.get("id").toString());
 		u.setName(dbo.get("name").toString());
 		u.setEmail(dbo.get("email").toString());
+		u.setPassword(dbo.get("password").toString());
 
 		// Return user object.
 		return u;

@@ -53,7 +53,7 @@ public class RegistrationController {
 		//userValidator.validate(user, bindingResult);
 		session = req.getSession();
 		session.setAttribute("loggedUser", user);
-        userService.add(user);
+        //userService.add(user);
         model.addAttribute("user", user);
 		return  "welcome";
 	}
