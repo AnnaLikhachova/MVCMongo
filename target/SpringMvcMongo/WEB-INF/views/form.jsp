@@ -23,6 +23,7 @@
 
 	            <button id="saveBtn" type="submit" class="btn btn-primary">Save</button>
 	        </form:form>
+	        <a href="welcome" class="btn-main-title">welcome</a>
 	    </div>
 	</body>
 </html>

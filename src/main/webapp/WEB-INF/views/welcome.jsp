@@ -16,7 +16,7 @@
 	    	
 	    	<!-- Div to add a new user to the mongo database -->
 	    	<div id="add_new_user">
-	    			<c:url var="addUrl" value="/save-user-${user.id}" /><a id="add" href="${addUrl}" class="btn btn-success">Add user</a>
+	    			<a href="form" class="btn-main-title">Add user</a>
 	    	</div>
 	    	<div>&nbsp;</div>
 			
