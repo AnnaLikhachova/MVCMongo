@@ -30,31 +30,31 @@ public class UserController {
 	@Resource(name="userService")
 	private UserService userService;
 	
-	@RequestMapping(value = { "/form" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/addUser" }, method = RequestMethod.GET)
 	public String showForm(ModelMap model) {		
 		User user = new User();
 		model.addAttribute("userAttr", user);
-		return "form";
+		return "addUser";
 	}
 	
-	@RequestMapping(value = { "/form" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/addUser" }, method = RequestMethod.POST)
 	public String saveUser(ModelMap model, @ModelAttribute("userAttr") User user) {		
 		if(user.getId() != null && !user.getId().trim().equals("")) {
 			userService.edit(user);
 		} else {
 			userService.add(user);
 		}
-		return "form";
+		return "addUser";
 	}
 	
-	@RequestMapping(value = { "/welcome" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin" }, method = RequestMethod.GET)
 	public String showUserList(ModelMap model) {		
 		User user = new User();
 		model.addAttribute("userAttr", user);
 		log.debug("Request to fetch all users from the mongo database");
 		List<User> userList = userService.getAll();		
 		model.addAttribute("users", userList);
-		return "welcome";
+		return "admin";
 	}
      
     /**
@@ -67,7 +67,7 @@ public class UserController {
     	User user = userService.findUserId(id);
     		model.addAttribute("userAttr", user);
         model.addAttribute("edit", true);
-        return "form";
+        return "addUser";
     }
     
 	 /**
@@ -83,7 +83,7 @@ public class UserController {
 		} else {
 			userService.add(user);
 		}
-        return "welcome";
+        return "admin";
     }
     
     /**
@@ -93,7 +93,7 @@ public class UserController {
     public String deleteUser(@PathVariable String id, ModelMap model) {
     
    	userService.delete(id);
-        return "redirect:/welcome";
+        return "redirect:/admin";
     }
 	
 }
