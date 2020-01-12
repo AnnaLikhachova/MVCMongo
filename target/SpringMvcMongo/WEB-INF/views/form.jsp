@@ -14,7 +14,7 @@
 	        <div>&nbsp;</div>
 	
 			<!-- User input form to add a new user or update the existing user-->
-	        <c:url var="saveUrl" value="/user/save" />
+	        <c:url var="saveUrl" value="/form" />
 	        <form:form id="user_form" modelAttribute="userAttr" method="POST" action="${saveUrl}">
 	        	<form:hidden path="id" />
 	            <label for="user_name">Enter Name: </label>
@@ -23,6 +23,7 @@
 
 	            <button id="saveBtn" type="submit" class="btn btn-primary">Save</button>
 	        </form:form>
+	        <a href="welcome" class="btn-main-title">welcome</a>
 	    </div>
 	</body>
 </html>
