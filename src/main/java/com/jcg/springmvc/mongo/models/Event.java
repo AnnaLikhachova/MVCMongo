@@ -1,11 +1,14 @@
 package com.jcg.springmvc.mongo.models;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+@Document(collection = "events")
 public class Event implements Serializable {
 
     private String id, name, location;

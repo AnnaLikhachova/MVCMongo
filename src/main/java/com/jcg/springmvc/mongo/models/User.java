@@ -2,7 +2,6 @@ package com.jcg.springmvc.mongo.models;
 
 import java.io.Serializable;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "users")

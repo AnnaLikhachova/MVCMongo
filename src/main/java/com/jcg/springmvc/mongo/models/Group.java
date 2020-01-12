@@ -1,10 +1,14 @@
 package com.jcg.springmvc.mongo.models;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
+@Document(collection = "groups")
 public class Group implements Serializable {
+
     private String id, name;
     private User[] members = new User[0];
 

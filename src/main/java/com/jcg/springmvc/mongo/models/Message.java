@@ -1,8 +1,11 @@
 package com.jcg.springmvc.mongo.models;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.io.Serializable;
 import java.util.Date;
 
+@Document(collection = "messages")
 public class Message implements Serializable {
 
     private String id, fromUserId, text;

@@ -1,7 +1,10 @@
 package com.jcg.springmvc.mongo.models;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.io.Serializable;
 
+@Document(collection = "statuses")
 public class UserEventStatus implements Serializable {
     private String id, userId;
     private EventStatus eventStatus;
