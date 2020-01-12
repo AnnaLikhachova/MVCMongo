@@ -28,13 +28,19 @@ public class UserService {
 		DBCollection coll = MongoFactory.getCollection(db_name, db_collection);
 
 		// Fetching cursor object for iterating on the database records.
-		DBCursor cursor = coll.find();	
-		while(cursor.hasNext()) {			
+		DBCursor cursor = coll.find();
+		while(cursor.hasNext()) {
 			DBObject dbObject = cursor.next();
 
 			User user = new User();
 			user.setId(dbObject.get("id").toString());
 			user.setName(dbObject.get("name").toString());
+			if(dbObject.get("email").toString() != null){
+				user.setEmail(dbObject.get("email").toString());}else user.setEmail("noemail");
+
+			if(dbObject.get("password").toString() != null){
+				user.setPassword(dbObject.get("password").toString());}else user.setPassword("nopassword");
+
 
 			// Adding the user details to the list.
 			user_list.add(user);
@@ -48,21 +54,21 @@ public class UserService {
 		boolean output = false;
 		Random ran = new Random();
 		log.debug("Adding a new user to the mongo database; Entered user_name is= " + user.getName());
-		try {			
+		try {
 			DBCollection coll = MongoFactory.getCollection(db_name, db_collection);
 
 			// Create a new object and add the new user details to this object.
 			BasicDBObject doc = new BasicDBObject();
-			doc.put("id", String.valueOf(ran.nextInt(100))); 
-			doc.put("name", user.getName());			
+			doc.put("id", String.valueOf(ran.nextInt(100)));
+			doc.put("name", user.getName());
 			doc.put("email", user.getEmail());
-
+			doc.put("password", user.getPassword());
 			// Save a new user to the mongo collection.
 			coll.insert(doc);
 			output = true;
 		} catch (Exception e) {
 			output = false;
-			log.error("An error occurred while saving a new user to the mongo database", e);			
+			log.error("An error occurred while saving a new user to the mongo database", e);
 		}
 		return output;
 	}
@@ -79,15 +85,16 @@ public class UserService {
 
 			// Create a new object and assign the updated details.
 			BasicDBObject edited = new BasicDBObject();
-			edited.put("id", user.getId()); 
+			edited.put("id", user.getId());
 			edited.put("name", user.getName());
-
+			edited.put("email", user.getEmail());
+			edited.put("password", user.getPassword());
 			// Update the existing user to the mongo database.
 			coll.update(existing, edited);
 			output = true;
 		} catch (Exception e) {
 			output = false;
-			log.error("An error has occurred while updating an existing user to the mongo database", e);			
+			log.error("An error has occurred while updating an existing user to the mongo database", e);
 		}
 		return output;
 	}
@@ -104,11 +111,11 @@ public class UserService {
 
 			// Deleting the selected user from the mongo database.
 			coll.remove(item);
-			output = true;			
+			output = true;
 		} catch (Exception e) {
 			output = false;
-			log.error("An error occurred while deleting an existing user from the mongo database", e);			
-		}	
+			log.error("An error occurred while deleting an existing user from the mongo database", e);
+		}
 		return output;
 	}
 
@@ -124,30 +131,13 @@ public class UserService {
 		return coll.findOne(where_query);
 	}
 
-	// Fetching a single user details from the mongo database.
-	public User findUserId(String id) {
+	private User findUserByField(String key, String value) {
 		User u = new User();
 		DBCollection coll = MongoFactory.getCollection(db_name, db_collection);
 
 		// Fetching the record object from the mongo database.
 		DBObject where_query = new BasicDBObject();
-		where_query.put("id", id);
-
-		DBObject dbo = coll.findOne(where_query);		
-		u.setId(dbo.get("id").toString());
-		u.setName(dbo.get("name").toString());
-
-		// Return user object.
-		return u;
-	}
-
-	public User findBySso(String sso) {
-		User u = new User();
-		DBCollection coll = MongoFactory.getCollection(db_name, db_collection);
-
-		// Fetching the record object from the mongo database.
-		DBObject where_query = new BasicDBObject();
-		where_query.put("email", sso);
+		where_query.put(key, value);
 
 		DBObject dbo = coll.findOne(where_query);
 		if(dbo == null) {
@@ -157,8 +147,16 @@ public class UserService {
 		u.setName(dbo.get("name").toString());
 		u.setEmail(dbo.get("email").toString());
 		u.setPassword(dbo.get("password").toString());
-
 		// Return user object.
 		return u;
+	}
+
+	// Fetching a single user details from the mongo database.
+	public User findUserId(String id) {
+		return findUserByField("id", id);
+	}
+
+	public User findUserByEmail(String email) {
+		return findUserByField("email", email);
 	}
 }

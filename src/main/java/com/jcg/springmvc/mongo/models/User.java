@@ -1,38 +1,29 @@
 package com.jcg.springmvc.mongo.models;
 
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.List;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "users")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String id, name, email, password;
-	private Group[] groups = new Group[0];
+	private String id;
+
+	private String name, email, password;
 
 	public User() {
 		super();
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public User(String id, String name) {
+	public User(String id, String name, String email, String password) {
 		super();
 		this.id = id;
 		this.name = name;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void addToGroup(Group group) {
-		List<Group> updatedGroupsList = Arrays.asList(this.groups);
-		updatedGroupsList.add(group);
-		this.groups = updatedGroupsList.toArray(new Group[0]);
+		this.email = email;
+		this.password = password;
 	}
 
 	public String getId() {
@@ -59,41 +50,13 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
+	public String getPassword() {
+		return password;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
+	public void setPassword(String password) {
+		this.password = password;
 	}
+
 
 }

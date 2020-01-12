@@ -57,7 +57,7 @@ public class LoginController {
 						 HttpServletRequest req,
 						 Model model) {
 		
-		user = userService.findBySso(email);
+		user = userService.findUserByEmail(email);
 		
 		if (user == null) {			
 			return "/login";
@@ -70,10 +70,3 @@ public class LoginController {
 	}
 	
 }
-/**
- * This method returns true if users is already authenticated [logged-in], else false.
-	private boolean isCurrentAuthenticationAnonymous() {
-    final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    return authenticationTrustResolver.isAnonymous(authentication);
-	}
- */

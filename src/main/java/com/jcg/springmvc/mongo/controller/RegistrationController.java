@@ -4,6 +4,7 @@ package com.jcg.springmvc.mongo.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.jcg.springmvc.mongo.models.User;
 import com.jcg.springmvc.mongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.jcg.springmvc.mongo.User;
 
 /**
  * The controller class for registration page.
@@ -53,7 +53,7 @@ public class RegistrationController {
 		//userValidator.validate(user, bindingResult);
 		session = req.getSession();
 		session.setAttribute("loggedUser", user);
-        //userService.add(user);
+        userService.add(user);
         model.addAttribute("user", user);
 		return  "welcome";
 	}
