@@ -19,7 +19,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.jcg.springmvc.mongo.model.Group;
+import com.jcg.springmvc.mongo.model.Post;
 import com.jcg.springmvc.mongo.model.User;
+import com.jcg.springmvc.mongo.service.GroupService;
+import com.jcg.springmvc.mongo.service.PostService;
 import com.jcg.springmvc.mongo.service.UserService;
 
 @Controller
@@ -30,31 +34,49 @@ public class UserController {
 	@Resource(name="userService")
 	private UserService userService;
 	
-	@RequestMapping(value = { "/form" }, method = RequestMethod.GET)
+	@Resource(name="groupService")
+    private GroupService groupService;
+	
+	@Resource(name="postService")
+	private PostService postService;
+	
+	/**
+     * This method returns profile page.
+     */
+	@RequestMapping(value = { "/profile" }, method = RequestMethod.GET)
+	public String profile(ModelMap model) {
+		List<Group> groupList = groupService.getAll();
+        model.addAttribute("groups", groupList);	
+        List<Post> postList = postService.getAll();
+        model.addAttribute("posts", postList);
+		return "/profile";
+	}
+	
+	@RequestMapping(value = { "/addUser" }, method = RequestMethod.GET)
 	public String showForm(ModelMap model) {		
 		User user = new User();
 		model.addAttribute("userAttr", user);
-		return "form";
+		return "addUser";
 	}
 	
-	@RequestMapping(value = { "/form" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/addUser" }, method = RequestMethod.POST)
 	public String saveUser(ModelMap model, @ModelAttribute("userAttr") User user) {		
 		if(user.getId() != null && !user.getId().trim().equals("")) {
 			userService.edit(user);
 		} else {
 			userService.add(user);
 		}
-		return "form";
+		return "redirect:/admin";
 	}
 	
-	@RequestMapping(value = { "/welcome" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin" }, method = RequestMethod.GET)
 	public String showUserList(ModelMap model) {		
 		User user = new User();
 		model.addAttribute("userAttr", user);
 		log.debug("Request to fetch all users from the mongo database");
 		List<User> userList = userService.getAll();		
 		model.addAttribute("users", userList);
-		return "welcome";
+		return "admin";
 	}
      
     /**
@@ -67,7 +89,7 @@ public class UserController {
     	User user = userService.findUserId(id);
     		model.addAttribute("userAttr", user);
         model.addAttribute("edit", true);
-        return "form";
+        return "addUser";
     }
     
 	 /**
@@ -83,7 +105,7 @@ public class UserController {
 		} else {
 			userService.add(user);
 		}
-        return "welcome";
+        return "admin";
     }
     
     /**
@@ -93,7 +115,7 @@ public class UserController {
     public String deleteUser(@PathVariable String id, ModelMap model) {
     
    	userService.delete(id);
-        return "redirect:/welcome";
+        return "redirect:/admin";
     }
 	
 }
