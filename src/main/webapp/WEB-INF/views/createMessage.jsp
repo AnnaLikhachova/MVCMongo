@@ -10,18 +10,18 @@
 	</head>
 	<body>
 	    <div class="container">
-	        <h3 id="form_header" class="text-warning" align="center">Create Group Form</h3>
+	        <h3 id="form_header" class="text-warning" align="center">Create Message Form</h3>
 	        <div>&nbsp;</div>
 	
-			<!-- User input form to add a new user or update the existing user-->
-	        <c:url var="saveUrl" value="/createGroup" />
-	        <form:form id="user_form" modelAttribute="group" method="POST" action="${saveUrl}">
+			<!-- Message input form to add a new user or update the existing user-->
+	        <c:url var="saveUrl" value="/createMessage" />
+	        <form:form id="user_form" modelAttribute="message" method="POST" action="${saveUrl}">
 	        	<form:hidden path="id" />
-	            <label for="group_name">Enter Name: </label>
-	            <form:input id="group_name" cssClass="form-control" path="name" />
+	            <label for="group_name">Enter Message: </label>
+	            <form:input id="group_name" cssClass="form-control" path="message" />
 	            <div>&nbsp;</div>
-	            <label for="group_name">Enter Description: </label>
-	            <form:input id="group_name" cssClass="form-control" path="description" />
+	            <label for="group_name">Enter Reciever email: </label>
+	            <form:input id="reciever" name="reciever" cssClass="form-control" path="reciever" />
 	            <div>&nbsp;</div>
 
 	            <button id="saveBtn" type="submit" class="btn btn-primary">Save</button>

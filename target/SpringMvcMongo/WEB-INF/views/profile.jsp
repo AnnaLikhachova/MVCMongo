@@ -43,24 +43,20 @@
           <div class="article">
             <h2><span>Template License</span></h2>
             <div class="clr"></div>
-            <p class="post-data"><span class="date">March 16, 2018</span> &nbsp;|&nbsp; Posted by <a href="#">Owner</a> &nbsp;|&nbsp; Filed under <a href="#">templates</a>, <a href="#">internet</a></p>
+            <p class="post-data"><span class="date">November 16, 2019</span> &nbsp;|&nbsp; Posted by <a href="#">Owner</a> &nbsp;|&nbsp; Filed under <a href="#">templates</a>, <a href="#">internet</a></p>
             <img src="static/img/images/images_1.jpg" width="613" height="193" alt="" />
-            <p>This is a free CSS website template by RocketWebsiteTemplates.com. This work is distributed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, which means that you are free to use it for any personal or commercial purpose provided you credit me in the form of a link back to RocketWebsiteTemplates.com.</p>
-            <p class="spec"><a href="#" class="com fr">Comments (3)</a> <a href="#" class="rm fl">Read more</a></p>
+            <p></p>
+            <p class="spec"><a href="#" class="com fr">Comments</a> <a href="#" class="rm fl">Read more</a></p>
             <div class="clr"></div>
           </div>
           <div class="article">
-            <h2><span>Lorem Ipsum</span> Dolor Sit</h2>
+            <h2><span>Social advertisement</span></h2>
             <div class="clr"></div>
-            <p class="post-data"><span class="date">March 15, 2010</span> &nbsp;|&nbsp; Posted by <a href="#">Owner</a> &nbsp;|&nbsp; Filed under <a href="#">templates</a>, <a href="#">internet</a></p>
+            <p class="post-data"><span class="date">December 15, 2019</span> &nbsp;|&nbsp; Posted by <a href="#">Owner</a> &nbsp;|&nbsp; Filed under <a href="#">templates</a>, <a href="#">internet</a></p>
             <img src="static/img/images/images_2.jpg" width="613" height="193" alt="" />
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. <a href="#">Morbi tincidunt, orci ac convallis aliquam, lectus turpis varius lorem, eu posuere nunc justo tempus leo.</a> Donec mattis, purus nec placerat bibendum, dui pede condimentum odio, ac blandit ante orci ut diam. Cras fringilla magna. Phasellus suscipit, leo a pharetra condimentum, lorem tellus eleifend magna, eget fringilla velit magna id neque. Curabitur vel urna. In tristique orci porttitor ipsum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. Morbi tincidunt, orci ac convallis aliquam.</p>
-            <p>Aenean commodo elit ac ante dignissim iaculis sit amet non velit. Donec magna sapien, molestie sit amet faucibus sit amet, fringilla in urna. Aliquam erat volutpat. Fusce a dui est. Sed in volutpat elit. Nam odio tortor, pulvinar non scelerisque in, eleifend nec nunc. Sed pretium, massa sed dictum dapibus, nibh purus posuere magna, ac porta felis lectus ut neque. Nullam sagittis ante vitae velit facilisis lacinia. Cras vehicula lacinia ornare. Duis et cursus risus. Curabitur consectetur justo sit amet odio viverra vel iaculis odio gravida. Ut imperdiet metus nec erat.</p>
-            <p class="spec"><a href="#" class="com fr">Comments (7)</a> <a href="#" class="rm fl">Read more</a></p>
+            <p></p>
+            <p class="spec"><a href="#" class="com fr">Comments</a> <a href="#" class="rm fl">Read more</a></p>
             <div class="clr"></div>
-          </div>
-          <div class="pagenavi"><span class="pages">Page 1 of 2</span><span class="current">1</span><a href="#">2</a><a href="#" >&raquo;</a></div>
-        </div>
         <div class="sidebar">
           <div class="gadget">
             <h2 class="star"><span>Sidebar</span> Menu</h2>
@@ -75,16 +71,63 @@
             <h2 class="star"><span>Sponsors</span></h2>
             <div class="clr"></div>
             <ul class="ex_menu">
-              <li><a href="http://www.dreamtemplate.com">DreamTemplate</a></li>
-              <li><a href="http://www.dreamtemplate.com">DreamTemplate</a></li>
-              <li><a href="http://www.dreamtemplate.com">DreamTemplate</a></li>
+              <li>Groups
+              <table id="users_table" class="table">
+	        	<thead>
+	            	<tr align="center">
+	            		<th>Name</th><th>Description</th><th colspan="2"></th>
+	            	</tr>
+	        	</thead>
+	        	<tbody>
+	            	<c:forEach items="${groups}" var="group">
+	                	<tr align="center">
+	                    	<td><c:out value="${group.name}" /></td>
+	                    		<td><c:out value="${group.description}" /></td>
+	                	</tr>
+	            	</c:forEach>
+	        	</tbody>
+	    	</table>
+              </li>
+              <li>Chats
+              <table id="users_table" class="table">
+	        	<thead>
+	            	<tr align="center">
+	            		<th>Name</th><th colspan="1"></th>
+	            	</tr>
+	        	</thead>
+	        	<tbody>
+	            	<c:forEach items="${chats}" var="chat">
+	                	<tr align="center">
+	                    	<td><c:out value="${chat.name}" /></td>                   	
+	                	</tr>
+	            	</c:forEach>
+	        	</tbody>
+	    	</table>           
+              </li>
+              <li>Posts
+              <table id="users_table" class="table">
+	        	<thead>
+	            	<tr align="center">
+	            		<th>Date</th><th colspan="1"></th>
+	            	</tr>
+	        	</thead>
+	        	<tbody>
+	            	<c:forEach items="${posts}" var="post">
+	                	<tr align="center">
+	                    	<td><c:out value="${post.timestamp}" /></td>
+                    		
+	                	</tr>
+	            	</c:forEach>
+	        	</tbody>
+	    	</table>       
+              </li>
             </ul>
           </div>
           <div class="gadget">
             <h2 class="star"><span>Wise Words</span></h2>
             <div class="clr"></div>
             <div class="testi">
-              <p><span class="q"><img src="static/img/images/qoute_1.gif" width="20" height="15" alt="" /></span> We can let circumstances rule us, or we can take charge and rule our lives from within. <span class="q"><img src="images/qoute_2.gif" width="20" height="15" alt="" /></span></p>
+              <p><span class="q"><img src="static/img/images/qoute_1.gif" width="20" height="15" alt="" /></span> We can let circumstances rule us, or we can take charge and rule our lives from within. <span class="q"><img src="static/img/images/qoute_2.gif" width="20" height="15" alt="" /></span></p>
               <p class="title"><strong>Earl Nightingale</strong></p>
             </div>
           </div>
@@ -110,7 +153,13 @@
       </div>
       <div class="col c3">
         <h2><span>About</span></h2>
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. Morbi tincidunt, orci ac convallis aliquam, lectus turpis varius lorem, eu posuere nunc justo tempus leo. llorem, eu posuere nunc justo tempus leo. Donec mattis, purus nec placerat bibendum. <a href="#">Learn more...</a></p>
+        <p>This Social network allows users to share ideas, digital photos and videos, posts, and to inform others about online or 
+        real-world activities and events with people in their network. While in-person social networking – such as gathering in a 
+        village market to talk about events – has existed since the earliest development of towns, the web enables 
+        people to connect with others who live in different locations, ranging from across a city to across the world. Depending on 
+        the social media platform, members may be able to contact any other member. In other cases, members can contact anyone they 
+        have a connection to, and subsequently anyone that contact has a connection to, and so on. Some services require members to have 
+        a preexisting connection to contact other members.. <a href="#">Learn more...</a></p>
       </div>
       <div class="clr"></div>
     </div>

@@ -19,7 +19,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.jcg.springmvc.mongo.model.Group;
+import com.jcg.springmvc.mongo.model.Post;
 import com.jcg.springmvc.mongo.model.User;
+import com.jcg.springmvc.mongo.service.GroupService;
+import com.jcg.springmvc.mongo.service.PostService;
 import com.jcg.springmvc.mongo.service.UserService;
 
 @Controller
@@ -30,11 +34,21 @@ public class UserController {
 	@Resource(name="userService")
 	private UserService userService;
 	
+	@Resource(name="groupService")
+    private GroupService groupService;
+	
+	@Resource(name="postService")
+	private PostService postService;
+	
 	/**
      * This method returns profile page.
      */
 	@RequestMapping(value = { "/profile" }, method = RequestMethod.GET)
 	public String profile(ModelMap model) {
+		List<Group> groupList = groupService.getAll();
+        model.addAttribute("groups", groupList);	
+        List<Post> postList = postService.getAll();
+        model.addAttribute("posts", postList);
 		return "/profile";
 	}
 	

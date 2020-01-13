@@ -2,6 +2,7 @@ package com.jcg.springmvc.mongo.controller;
 
 import org.springframework.stereotype.Controller;
 import com.jcg.springmvc.mongo.model.Group;
+import com.jcg.springmvc.mongo.model.User;
 import com.jcg.springmvc.mongo.service.GroupService;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
 
@@ -24,16 +28,20 @@ public class GroupController {
 	
 	@RequestMapping(value = { "/createGroup" }, method = RequestMethod.GET)
 	public String showForm(ModelMap model) {		
-		 Group group = new Group();
+		Group group = new Group();
 		model.addAttribute("group", group);
 		return "createGroup";
 	}
 	
 	@RequestMapping(value = { "/createGroup" }, method = RequestMethod.POST)
-	public String saveUser(ModelMap model, @ModelAttribute("group")  Group group) {		
+	public String saveGroup(ModelMap model, @ModelAttribute("group")  Group group,  HttpSession session) {	
+		List<User> users = new ArrayList<>();
+		User user = (User) session.getAttribute("loggedUser");
+		users.add(user);
 		if(group.getId() != null && !group.getId().trim().equals("")) {
 			groupService.edit(group);
 		} else {
+			group.setUsers(users);
 			groupService.add(group);
 		}
 		return "redirect:/groupsList";

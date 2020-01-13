@@ -44,6 +44,7 @@ public class LoginController {
 		if (user == null) {			
 			return "/login";
 		} else {
+			session.setAttribute("loggedUser", user);
 			model.addAttribute("loggedUser", user);
 			model.addAttribute("email", user.getEmail());
 			model.addAttribute("password", user.getPassword());
