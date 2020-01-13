@@ -9,12 +9,12 @@
 <head>
 <title></title>
 <meta charset="UTF-8" />
-	<link href="<c:url value='/static/css/main.css' />" rel="stylesheet"></link>
-	<link href="<c:url value='/static/css/util.css' />" rel="stylesheet"></link>
+	<link href="<c:url value="/WEB-INF/resources/css/main.css" />" rel="stylesheet">
+	<link href="<c:url value="/WEB-INF/resources/css/util.css" />" rel="stylesheet">
 </head>
 <body>
 <div class="limiter">
-	<div class="container-login100" style="background-image: url('<c:url value="/static/img/bg-01.jpg" />');">
+	<div class="container-login100" style="background-image: url('<c:url value="/WEB-INF/resources/images/bg-01.jpg" />');">
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 			<c:url var="loginUrl" value="/login" />
 			<form:form modelAttribute="userAttr" class="login100-form validate-form" action="${loginUrl}" method="post">
